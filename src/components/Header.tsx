@@ -13,7 +13,7 @@ interface HeaderContainerProps {
 const HeaderContainer = styled.View<HeaderContainerProps>`
   height: ${props => (props.insets.top ? 60 + props.insets.top : 60)}px;
   width: 100%;
-  background: #cc0000;
+  background: #ffffff;
   align-items: center;
   justify-content: center;
   padding-top: ${props => props.insets.top || 0}px;
@@ -30,8 +30,7 @@ const Floating = styled.View<HeaderContainerProps>`
   top: ${({ insets: { top } }) => (top ? top + 10 : 10)}px;
 `;
 
-const Header: React.FC<StackHeaderProps> = ({ navigation, insets, mode }) => {
-  console.log(mode);
+const Header: React.FC<StackHeaderProps> = ({ navigation, insets }) => {
   const currentNavigationIndex = navigation.dangerouslyGetState().index;
   const isRootScreen = currentNavigationIndex === 0;
 

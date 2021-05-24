@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 
 const Contents = styled.KeyboardAvoidingView`
   flex: 1;
-  background: #f0f0f0;
+  background: #ffffff;
   padding-left: 24px;
   padding-right: 24px;
 `;

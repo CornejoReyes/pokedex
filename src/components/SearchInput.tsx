@@ -9,7 +9,7 @@ const SearchContainer = styled.View`
   border-radius: 50px;
   margin-top: 8px;
   margin-bottom: 8px;
-  background: #dedede;
+  background: #f4f4f4;
   flex-direction: row;
 `;
 
