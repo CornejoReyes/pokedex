@@ -1,11 +1,12 @@
 import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import styled from 'styled-components/native';
-import ChevronLeft from '../assets/images/chevron_left.svg';
+import ArrowLeft from '../assets/images/arrow_left.svg';
 
 const Touchable = styled.TouchableOpacity`
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
+  margin-left: -5px;
 `;
 
 const BackButton: React.FC = () => {
@@ -15,7 +16,7 @@ const BackButton: React.FC = () => {
 
   return (
     <Touchable onPress={handleBack} activeOpacity={0.7}>
-      <ChevronLeft width="100%" height="100%" fill="#FFF" />
+      <ArrowLeft width="100%" height="100%" fill="#ffffff" />
     </Touchable>
   );
 };

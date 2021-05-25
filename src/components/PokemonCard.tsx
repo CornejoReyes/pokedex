@@ -1,6 +1,9 @@
+import { NavigationProp, useNavigation } from '@react-navigation/core';
 import React from 'react';
 import styled from 'styled-components/native';
+import { PokemonTypes } from '.';
 import { usePokemonDetail } from '../hooks';
+import { ApplicationRoutesParamList } from '../navigators';
 import { capitalize } from '../utils';
 import { ListablePokemon } from '../utils/PokemonAPI';
 
@@ -52,29 +55,6 @@ const PokemonId = styled.Text`
   font-weight: bold;
 `;
 
-const PokemonTypes = styled.View`
-  flex-direction: row;
-  margin-top: 4px;
-`;
-
-const TypeName = styled.Text`
-  color: #ffffff;
-  font-weight: bold;
-`;
-
-const TypeBadge = styled.View`
-  background: #fff4;
-  border-radius: 50px;
-  padding: 4px 12px;
-  margin-right: 4px;
-`;
-
-const Type: React.FC<{ type: string }> = ({ type }) => (
-  <TypeBadge>
-    <TypeName>{type}</TypeName>
-  </TypeBadge>
-);
-
 const PokemonData: React.FC<{ pokemon: ListablePokemon; types: string[] }> = ({
   pokemon,
   types,
@@ -82,11 +62,7 @@ const PokemonData: React.FC<{ pokemon: ListablePokemon; types: string[] }> = ({
   return (
     <PokemonDataContainer>
       <PokemonName>{capitalize(pokemon.name)}</PokemonName>
-      <PokemonTypes>
-        {types.map(type => (
-          <Type key={`${pokemon.name}-${type}`} type={type} />
-        ))}
-      </PokemonTypes>
+      <PokemonTypes types={types} />
     </PokemonDataContainer>
   );
 };
@@ -96,9 +72,21 @@ interface Props {
 }
 
 const PokemonCard: React.FC<Props> = ({ pokemon }) => {
-  const { loading, details, types, bgColor } = usePokemonDetail(pokemon.id);
+  const { details, types, bgColor } = usePokemonDetail(pokemon.id);
+  const navigation =
+    useNavigation<NavigationProp<ApplicationRoutesParamList, 'Home'>>();
+
+  const handleDetails = () => {
+    navigation.navigate('Details', {
+      pokemon,
+      details,
+      types,
+      bg: bgColor,
+    });
+  };
+
   return (
-    <Card bg={bgColor}>
+    <Card onPress={handleDetails} bg={bgColor} underlayColor={bgColor}>
       <CardContent>
         <SpriteContainer>
           <Sprite

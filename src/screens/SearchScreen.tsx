@@ -7,10 +7,6 @@ const SearchScreen: React.FC = () => {
   const navigation = useNavigation();
   const [query, setQuery] = useState('');
 
-  const handleDetail = () => {
-    navigation.navigate('Details');
-  };
-
   return (
     <Screen>
       <SearchInput value={query} onChangeText={setQuery} />

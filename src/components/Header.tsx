@@ -4,7 +4,6 @@ import { EdgeInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'react-native';
 import styled from 'styled-components/native';
 import Pokemon from '../assets/images/pokemon_logo.svg';
-import BackButton from './BackButton';
 
 interface HeaderContainerProps {
   insets: EdgeInsets;
@@ -24,16 +23,7 @@ const LogoContainer = styled.View`
   width: 120px;
 `;
 
-const Floating = styled.View<HeaderContainerProps>`
-  position: absolute;
-  left: 24px;
-  top: ${({ insets: { top } }) => (top ? top + 10 : 10)}px;
-`;
-
-const Header: React.FC<StackHeaderProps> = ({ navigation, insets }) => {
-  const currentNavigationIndex = navigation.dangerouslyGetState().index;
-  const isRootScreen = currentNavigationIndex === 0;
-
+const Header: React.FC<StackHeaderProps> = ({ insets }) => {
   return (
     <>
       <StatusBar barStyle="light-content" />
@@ -41,11 +31,6 @@ const Header: React.FC<StackHeaderProps> = ({ navigation, insets }) => {
         <LogoContainer>
           <Pokemon height="100%" width="100%" />
         </LogoContainer>
-        {!isRootScreen && (
-          <Floating insets={insets}>
-            <BackButton />
-          </Floating>
-        )}
       </HeaderContainer>
     </>
   );

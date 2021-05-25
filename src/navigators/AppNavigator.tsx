@@ -6,8 +6,9 @@ import {
 } from '@react-navigation/stack';
 import { DetailScreen, SearchScreen } from '../screens';
 import { Header } from '../components';
+import { ApplicationRoutesParamList } from './types';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<ApplicationRoutesParamList>();
 
 const PokemonHeader: React.FC<StackHeaderProps> = props => (
   <Header {...props} />
@@ -16,9 +17,13 @@ const PokemonHeader: React.FC<StackHeaderProps> = props => (
 const AppNavigator: React.FC = () => {
   const screenOptions: StackNavigationOptions = { header: PokemonHeader };
   return (
-    <Stack.Navigator screenOptions={screenOptions}>
+    <Stack.Navigator headerMode="screen" screenOptions={screenOptions}>
       <Stack.Screen name="Home" component={SearchScreen} />
-      <Stack.Screen name="Details" component={DetailScreen} />
+      <Stack.Screen
+        name="Details"
+        options={{ headerShown: false, header: () => null }}
+        component={DetailScreen}
+      />
     </Stack.Navigator>
   );
 };
