@@ -65,7 +65,7 @@ const SearchInput: React.FC<Props> = ({ value = '', onChangeText }) => {
       <SearchInputField
         value={value}
         onChangeText={onChangeText}
-        placeholder="Busca un pokémon"
+        placeholder="Search pokémon"
       />
       {value !== '' && (
         <ClearContainer>
