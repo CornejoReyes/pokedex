@@ -1,15 +1,17 @@
-import { useNavigation } from '@react-navigation/core';
 import React, { useState } from 'react';
 import { Screen, SearchInput } from '../components';
 import PokemonList from '../components/PokemonList';
 
 const SearchScreen: React.FC = () => {
-  const navigation = useNavigation();
   const [query, setQuery] = useState('');
+
+  const handleSearch = (val: string) => {
+    setQuery(val.toLowerCase());
+  };
 
   return (
     <Screen>
-      <SearchInput value={query} onChangeText={setQuery} />
+      <SearchInput value={query} onChangeText={handleSearch} />
       <PokemonList filter={query} />
     </Screen>
   );
